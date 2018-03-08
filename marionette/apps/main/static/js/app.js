@@ -8,6 +8,21 @@ EventManager.addRegions({
 	mainRegion: regionPrincipal
 });
 
+EventManager.navigate = function (route, options) {
+	options || (options = {});
+	Backbone.history.navigate(route, options);
+};
+
+EventManager.getCurrentRoute = function () {
+	return Backbone.history.fragment
+}
+
 EventManager.on('start', function () {
-	EventManager.EventosApp.List.Controller.listEventos();
+	if (Backbone.history) {
+		Backbone.history.start();
+
+		if (this.getCurrentRoute() === '') {
+			EventManager.trigger('events:list');
+		}
+	}
 });

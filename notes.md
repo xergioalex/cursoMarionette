@@ -245,5 +245,9 @@ Utilizado como una vista compuesta para escenarios donde debe representar tanto 
 
 
 
+Routing
+---
 
-
+- Ejecutar las acciones de control con las que el usuario entro a la url.
+- El manager debe mostrar una url de acuerdo a la url que se encuentre.
+- Actualizar la url que se encuentra en la barra de navegación.
