@@ -3,6 +3,15 @@ EventManager.module('EventosApp.List', function(List, EventManager, Backbone, Ma
 		tagName: 'article',
 		className: 'item-event',
 		template: '#static-template',
+
+		events: {
+			'click #item-name': 'detalleEvento'
+		},
+
+		detalleEvento: function (e) {
+			e.stopPropagation();
+			this.trigger('evento:show', this.model);
+		}
 	});
 
 	List.EventosView = Marionette.CollectionView.extend({

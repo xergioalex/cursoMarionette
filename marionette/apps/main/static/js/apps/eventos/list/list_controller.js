@@ -7,6 +7,11 @@ EventManager.module('EventosApp.List', function (List, EventManager, Backbone, M
 				collection: eventos
 			});
 
+			eventosListView.on('childview:evento:show', function (childView, model) {
+				console.log('Registro evento Marionette');
+				EventManager.EventosApp.Show.Controller.showEvento(model);
+			});
+
 			EventManager.mainRegion.show(eventosListView);
 		}
 	}
