@@ -218,8 +218,30 @@ Modulos Marionette
 
 
 
+Composite View
+----
+
+Extiende desde CollectionView.
 
 
+Se utiliza como una vista compuesta para escenarios donde debe representar tanto un collectionview e itemview en una estructura del DOM, o para escenarios donde una colección tiene qu eser dictada dentro de una plantill envoltoria.
+
+
+Composite Model template
+---
+
+
+
+Utilizado como una vista compuesta para escenarios donde debe representar tanto un collection view e item view en una estructura del DOM. O para escenarios donde una plantilla de envoltura. Por defect, el compositeview antendrá la orden de una colección ordenada en el DOM.
+
+```
+<script type="text/template">
+	<div>
+		<h1 class="item-title-event">Eventos</h1>
+	</div>
+	<section class="container-events"></section>
+</script>
+```
 
 
 
