@@ -22,7 +22,7 @@ EventManager.on('start', function () {
 		Backbone.history.start();
 
 		if (this.getCurrentRoute() === '') {
-			EventManager.trigger('events:list');
+			EventManager.trigger('about:show');
 		}
 	}
 });
