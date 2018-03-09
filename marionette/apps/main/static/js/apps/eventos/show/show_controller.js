@@ -3,6 +3,9 @@ EventManager.module('EventosApp.Show', function (Show, EventManager, Backbone, M
 		showEvento: function (id) {
 			var fetchEvento = EventManager.request('evento:entity', id);
 
+			var eventsListLayout = new Show.Layout();
+			var registerPanel = new Show.Register();
+
 			$.when(fetchEvento).done(function (evento) {
 				var fecha = new Date(evento.get('date'));
 				var dia = EventManager.EventosApp.Show.Controller.getDia(fecha.getDay());
@@ -18,10 +21,15 @@ EventManager.module('EventosApp.Show', function (Show, EventManager, Backbone, M
 					EventManager.trigger('events:list');
 				});
 
+				eventsListLayout.on('show', function () {
+					eventsListLayout.eventRegion.show(eventoView);
+					eventsListLayout.panelRegister.show(registerPanel);
+				});
+
 				// eventoView.on('change:atributo', function (model) {
 				// 	eventoView.render()
 				// });
-				EventManager.mainRegion.show(eventoView);
+				EventManager.mainRegion.show(eventsListLayout);
 			});
 
 

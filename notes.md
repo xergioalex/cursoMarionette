@@ -267,7 +267,10 @@ jQuery Deferreds
 Una forma de esperar mientras llegan los datos del servidor.
 
 
+Layout
+---
 
+Representación de un ItemView que nos ayudara a representar más de una vista.
 
 
 
