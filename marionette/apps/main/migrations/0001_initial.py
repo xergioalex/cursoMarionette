@@ -19,7 +19,7 @@ class Migration(migrations.Migration):
                 ('name', models.CharField(max_length=100)),
                 ('address', models.CharField(max_length=100)),
                 ('description', models.CharField(max_length=250)),
-                ('image', models.ImageField(upload_to=b'events')),
+                # ('image', models.ImageField(upload_to=b'events')),
                 ('organizer', models.CharField(max_length=100)),
                 ('date', models.DateTimeField()),
                 ('category', models.CharField(max_length=50)),

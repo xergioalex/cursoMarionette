@@ -1,61 +1,78 @@
 EventManager.module('entities', function (Entities, EventManager, Backbone, Marionette, $, _) {
-	EventManager.Evento = Backbone.Model.extend();
+	EventManager.Evento = Backbone.Model.extend({
+		urlRoot: 'api/eventos/',
+		defaults: {
+			date: '',
+			fecha: '',
+			dia: '',
+			hora: '',
+			category: '',
+			address: '',
+			description: '',
+			organizer: '',
+			image: ''
+		},
+
+		initialize: function () {
+			this.on('change:date', this.onFecha, this);
+		},
+
+		onFecha: function (model, options) {
+			var fecha = new Date(model.get('date'));
+			var dia = this.getDia(fecha.getDay());
+			model.set({ dia: dia });
+			model.set({ hora: fecha.getHours() + ':' + fecha.getMinutes() });
+			model.set({ fecha: fecha.getDate() + '/' + fecha.getMonth() + '/' + fecha.getFullYear() });
+		},
+
+		getDia: function (dia) {
+			if (dia === 1) { return "Lunes" }
+			if (dia === 2) { return "Martes" }
+			if (dia === 3) { return "Miercoles" }
+			if (dia === 4) { return "Jueves" }
+			if (dia === 5) { return "Viernes" }
+			if (dia === 6) { return "Sabado" }
+			if (dia === 7) { return "Domingo" }
+		}
+	});
 
 	EventManager.EventosCollection = Backbone.Collection.extend({
-		model: EventManager.Evento
+		model: EventManager.Evento,
+		url: 'api/eventos/'
 	});
 
 	var eventosTodos;
 
-	var initializeEventos = function () {
-		eventosTodos = new EventManager.EventosCollection([
-			{
-				id: 1,
-				dia: 'Mon, Jun 15',
-				hora: '11:00 AM',
-				name: 'Título elemento 1',
-				category: 'Marketing',
-				direction: 'Colombia'
-			},
-			{
-				'id': 2,
-				dia: 'Mon, Jun 15',
-				hora: '11:00 AM',
-				name: 'Título elemento 2',
-				category: 'Marketing',
-				direction: 'Colombia'
-			},
-			{
-				'id': 3,
-				dia: 'Mon, Jun 15',
-				hora: '11:00 AM',
-				name: 'Título elemento 3',
-				category: 'Marketing',
-				direction: 'Colombia'
-			},
-			{
-				'id': 4,
-				dia: 'Mon, Jun 15',
-				hora: '11:00 AM',
-				name: 'Título elemento 4',
-				category: 'Marketing',
-				direction: 'Colombia'
-			},
-		])
-	}
-
 	var API = {
 		getEventosEntities: function () {
-			if (eventosTodos === undefined) {
-				initializeEventos();
-			}
+			// if (eventosTodos === undefined) {
+			// 	initializeEventos();
+			// }
+			eventosTodos = new EventManager.EventosCollection();
+			eventosTodos.fetch();
 
 			return eventosTodos;
+		},
+
+		getEventoEntity: function (id) {
+			var eventModel =  new EventManager.Evento({ id: id });
+			eventModel.fetch({ id: id });
+
+			// if (eventosTodos === undefined) {
+			// 	initializeEventos();
+			// }
+
+			console.log(eventModel);
+			return eventModel;
 		}
 	};
 
 	EventManager.reqres.setHandler('eventos:entities', function () {
 		return API.getEventosEntities()
+	});
+
+	EventManager.reqres.setHandler('evento:entity', function (id) {
+		return API.getEventoEntity(id)
 	});
 
 });
