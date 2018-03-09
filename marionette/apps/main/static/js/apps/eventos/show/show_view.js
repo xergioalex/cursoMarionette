@@ -8,16 +8,16 @@ EventManager.module('EventosApp.Show', function (Show, EventManager, Backbone, M
 			'click .btn-small': 'atrasEvento'
 		},
 
-		modelEvents: {
-			'change': 'cambioAtributte'
-		},
+		// modelEvents: {
+		// 	'change': 'cambioAtributte'
+		// },
 
 		atrasEvento: function (e) {
 			this.trigger('showList:eventos', this.model);
 		},
 
-		cambioAtributte: function (model, options) {
-			this.trigger('change:atributo', model);
-		}
+		// cambioAtributte: function (model, options) {
+		// 	this.trigger('change:atributo', model);
+		// }
 	});
 });

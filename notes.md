@@ -261,9 +261,10 @@ Data Latency
 
 
 
+jQuery Deferreds
+---
 
-
-
+Una forma de esperar mientras llegan los datos del servidor.
 
 
 
