@@ -3,7 +3,11 @@ EventManager.module('Entities', function (Entities, EventManager, Backbone, Mari
 		initialize: function () {
 			var selectable = new Backbone.Picky.Selectable(this);
 			_.extend(this, selectable);
-		}
+		},
+		defaults: {
+			name: '',
+			url: '',
+		},
 	});
 
 	Entities.HeaderCollection = Backbone.Collection.extend({
@@ -31,5 +35,7 @@ EventManager.module('Entities', function (Entities, EventManager, Backbone, Mari
 		}
 	}
 
-	EventManager.reqres.setHandler('header:entities');
+	EventManager.reqres.setHandler('header:entities', function () {
+		return API.getHeader();
+	});
 });

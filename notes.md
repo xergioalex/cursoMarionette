@@ -276,3 +276,7 @@ Representación de un ItemView que nos ayudara a representar más de una vista.
 
 
 
+Filtros en Marionette y BackboneJs
+---
+
+Son usados con Underscore

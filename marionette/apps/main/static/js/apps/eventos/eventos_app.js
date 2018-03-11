@@ -8,12 +8,14 @@ EventManager.module('EventosApp', function (EventosApp, EventManager, Backbone, 
 
 	var API = {
 		listEventos: function () {
+			console.log('Entra');
 			EventosApp.List.Controller.listEventos();
 		},
 		showEvento: function (id) {
 			EventosApp.Show.Controller.showEvento(id);
-		}
+		},
 	}
+
 
 	EventManager.on('events:list', function () {
 		EventManager.navigate('eventos');

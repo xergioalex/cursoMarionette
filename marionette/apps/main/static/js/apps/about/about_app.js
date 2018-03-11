@@ -1,12 +1,14 @@
 EventManager.module('AboutApp', function (AboutApp, EventManager, Backbone, Marionette, $, _) {
+	console.log('Entraaa');
 	AboutApp.Router = Marionette.AppRouter.extend({
-		AppRoutes: {
+		appRoutes: {
 			'about': 'showAbout'
 		}
 	});
 
 	var API = {
 		showAbout: function () {
+			console.log('Entra');
 			AboutApp.Show.Controller.showAbout();
 		}
 	};

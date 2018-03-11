@@ -5,7 +5,8 @@ var regionPrincipal = Marionette.Region.extend({
 });
 
 EventManager.addRegions({
-	mainRegion: regionPrincipal
+	mainRegion: regionPrincipal,
+	headerRegion: '#header-region'
 });
 
 EventManager.navigate = function (route, options) {

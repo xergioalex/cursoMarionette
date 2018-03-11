@@ -37,12 +37,16 @@
 		</script>
 
 		<script type="text/template" id="header-link">
-			<a href="#<%= url %>"><%= name %></a>
+			<a href="#<%= url =>"><%= name %></a>
 		</script>
 
 		<script type="text/template" id="event-register-layout">
-			<div id="event-item"></div>
-			<div id="event-register"></div>
+			<div id="event-item">
+
+			</div>
+			<div id="event-register">
+
+			</div>
 		</script>
 
 		<script type="text/template" id="about-template">
@@ -111,18 +115,16 @@
 		<script type="text/javascript" src="{% static 'js/entities/header.js' %}"></script>
 		<script type="text/javascript" src="{% static 'js/entities/evento.js' %}"></script>
 
-		<script type="text/javascript" src="{% static 'js/apps/about/about_app.js' %}"></script>
 		<script type="text/javascript" src="{% static 'js/apps/header/header_app.js' %}"></script>
 		<script type="text/javascript" src="{% static 'js/apps/eventos/eventos_app.js' %}"></script>
-
-		<script type="text/javascript" src="{% static 'js/apps/about/show/show_controller.js' %}"></script>
-		<script type="text/javascript" src="{% static 'js/apps/about/show/show_view.js' %}"></script>
+		<script type="text/javascript" src="{% static 'js/apps/about/about_app.js' %}"></script>
 
 		<script type="text/javascript" src="{% static 'js/apps/header/list/list_controller.js' %}"></script>
 		<script type="text/javascript" src="{% static 'js/apps/header/list/list_view.js' %}"></script>
-
 		<script type="text/javascript" src="{% static 'js/apps/eventos/list/list_controller.js' %}"></script>
 		<script type="text/javascript" src="{% static 'js/apps/eventos/list/list_view.js' %}"></script>
+		<script type="text/javascript" src="{% static 'js/apps/about/show/show_controller.js' %}"></script>
+		<script type="text/javascript" src="{% static 'js/apps/about/show/show_view.js' %}"></script>
 
 		<script type="text/javascript" src="{% static 'js/apps/eventos/show/show_controller.js' %}"></script>
 		<script type="text/javascript" src="{% static 'js/apps/eventos/show/show_view.js' %}"></script>
