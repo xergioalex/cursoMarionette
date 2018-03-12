@@ -7,6 +7,8 @@ requirejs.config({
 		marionette: 'vendor/backbone.marionette',
 		'backbone.picky': 'vendor/backbone.picky',
 		underscore: 'vendor/underscore',
+		text: 'vendor/text',
+		tpl: 'vendor/underscore-tpl'
 	},
 	shim: {
 		underscore: {
@@ -20,7 +22,8 @@ requirejs.config({
 			deps: ['backbone'],
 			exports: 'Marionette'
 		},
-		'backbone.picky': ['backbone']
+		'backbone.picky': ['backbone'],
+		tpl: ['text']
 	}
 });
 

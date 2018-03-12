@@ -1,9 +1,13 @@
-define(['app', 'entities/evento'], function (EventManager) {
+define(['app',
+		'tpl!apps/eventos/list/template/tpl.static.template.tpl',
+		'entities/evento'], function (EventManager, staticTemplateTpl) {
+
 	EventManager.module('EventosApp.List.View', function(View, EventManager, Backbone, Marionette, $, _) {
 		View.StaticView = Marionette.ItemView.extend({
 			tagName: 'article',
 			className: 'item-event',
-			template: '#static-template',
+			// template: '#static-template',
+			template: staticTemplateTpl,
 
 			events: {
 				'click #item-name': 'detalleEvento'
