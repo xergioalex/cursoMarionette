@@ -1,35 +1,39 @@
-EventManager.module('EventosApp.List', function(List, EventManager, Backbone, Marionette, $, _) {
-	List.StaticView = Marionette.ItemView.extend({
-		tagName: 'article',
-		className: 'item-event',
-		template: '#static-template',
+define(['app', 'entities/evento'], function (EventManager) {
+	EventManager.module('EventosApp.List.View', function(View, EventManager, Backbone, Marionette, $, _) {
+		View.StaticView = Marionette.ItemView.extend({
+			tagName: 'article',
+			className: 'item-event',
+			template: '#static-template',
 
-		events: {
-			'click #item-name': 'detalleEvento'
-		},
+			events: {
+				'click #item-name': 'detalleEvento'
+			},
 
-		detalleEvento: function (e) {
-			e.stopPropagation();
-			this.trigger('evento:show', this.model);
-		}
-	});
+			detalleEvento: function (e) {
+				e.stopPropagation();
+				this.trigger('evento:show', this.model);
+			}
+		});
 
-	// List.EventosView = Marionette.CompositeView.extend({
-	// 	tagName: 'section',
-	// 	template: '#eventList-template',
-	// 	childView: List.StaticView,
-	// 	childViewContainer: '.container-events',
-	// 	attachHtml: function (collectionView, childView, index) {
-	// 		collectionView.$el.prepend(childView.el);
-	// 	}
-	// })
+		// View.EventosView = Marionette.CompositeView.extend({
+		// 	tagName: 'section',
+		// 	template: '#eventView-template',
+		// 	childView: View.StaticView,
+		// 	childViewContainer: '.container-events',
+		// 	attachHtml: function (collectionView, childView, index) {
+		// 		collectionView.$el.prepend(childView.el);
+		// 	}
+		// })
 
-	List.EventosView = Marionette.CollectionView.extend({
-		tagName: 'section',
-		className: 'container-events',
-		childView: List.StaticView,
-		attachHtml: function (collectionView, childView, index) {
-			collectionView.$el.prepend(childView.el);
-		}
-	});
+		View.EventosView = Marionette.CollectionView.extend({
+			tagName: 'section',
+			className: 'container-events',
+			childView: View.StaticView,
+			attachHtml: function (collectionView, childView, index) {
+				collectionView.$el.prepend(childView.el);
+			}
+		});
+	})
+
+	return EventManager.EventosApp.List.View;
 })

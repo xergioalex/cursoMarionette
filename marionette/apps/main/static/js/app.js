@@ -20,15 +20,16 @@ define(['marionette'], function (Marionette) {
 	}
 
 	EventManager.on('start', function () {
-		require(['apps/about/about_app'], function () {
+		// require(['apps/eventos/eventos_app'], function () {
 			if (Backbone.history) {
 				Backbone.history.start();
 
 				if (EventManager.getCurrentRoute() === '') {
-					EventManager.trigger('about:show');
+					EventManager.trigger('events:list');
+					// EventManager.trigger('about:show');
 				}
 			}
-		});
+		// });
 	});
 
 	return EventManager;

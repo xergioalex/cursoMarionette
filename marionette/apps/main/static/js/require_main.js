@@ -24,7 +24,7 @@ requirejs.config({
 	}
 });
 
-require(['app'], function (EventManager) {
+require(['app', 'apps/header/header_app', 'apps/about/about_app', 'apps/eventos/eventos_app'], function (EventManager) {
 	console.log('Hello');
 	EventManager.start();
 })

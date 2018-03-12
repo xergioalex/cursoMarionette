@@ -1,25 +1,29 @@
-EventManager.module('EventosApp.ListMy', function(ListMy, EventManager, Backbone, Marionette, $, _) {
-	ListMy.StaticView = Marionette.ItemView.extend({
-		tagName: 'article',
-		className: 'item-event',
-		template: '#static-template',
+define(['app', 'entities/evento'], function (EventManager) {
+	EventManager.module('EventosApp.ListMy.View', function(View, EventManager, Backbone, Marionette, $, _) {
+		View.StaticView = Marionette.ItemView.extend({
+			tagName: 'article',
+			className: 'item-event',
+			template: '#static-template',
 
-		events: {
-			'click #item-name': 'detalleEvento'
-		},
+			events: {
+				'click #item-name': 'detalleEvento'
+			},
 
-		detalleEvento: function (e) {
-			e.stopPropagation();
-			this.trigger('evento:showMy', this.model);
-		}
-	});
+			detalleEvento: function (e) {
+				e.stopPropagation();
+				this.trigger('evento:showMy', this.model);
+			}
+		});
 
-	ListMy.EventosView = Marionette.CollectionView.extend({
-		tagName: 'section',
-		className: 'container-events',
-		childView: ListMy.StaticView,
-		attachHtml: function (collectionView, childView, index) {
-			collectionView.$el.prepend(childView.el);
-		}
-	});
+		View.EventosView = Marionette.CollectionView.extend({
+			tagName: 'section',
+			className: 'container-events',
+			childView: View.StaticView,
+			attachHtml: function (collectionView, childView, index) {
+				collectionView.$el.prepend(childView.el);
+			}
+		});
+	})
+
+	return EventManager.EventosApp.ListMy.View;
 })
