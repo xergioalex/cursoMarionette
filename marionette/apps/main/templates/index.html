@@ -125,42 +125,6 @@
 	        </div>
 		</script>
 
-		<script type="text/javascript" src="{% static 'js/vendor/jquery.js' %}"></script>
-		<script type="text/javascript" src="{% static 'js/vendor/json2.js' %}"></script>
-		<script type="text/javascript" src="{% static 'js/vendor/underscore.js' %}"></script>
-		<script type="text/javascript" src="{% static 'js/vendor/backbone.js' %}"></script>
-		<script type="text/javascript" src="{% static 'js/vendor/backbone.picky.js' %}"></script>
-		<script type="text/javascript" src="{% static 'js/vendor/backbone.marionette.js' %}"></script>
-
-		<script type="text/javascript" src="{% static 'js/app.js' %}"></script>
-		<script type="text/javascript" src="{% static 'js/entities/header.js' %}"></script>
-		<script type="text/javascript" src="{% static 'js/entities/evento.js' %}"></script>
-
-		<script type="text/javascript" src="{% static 'js/apps/about/about_app.js' %}"></script>
-		<script type="text/javascript" src="{% static 'js/apps/header/header_app.js' %}"></script>
-		<script type="text/javascript" src="{% static 'js/apps/eventos/eventos_app.js' %}"></script>
-
-		<script type="text/javascript" src="{% static 'js/apps/about/show/show_controller.js' %}"></script>
-		<script type="text/javascript" src="{% static 'js/apps/about/show/show_view.js' %}"></script>
-
-		<script type="text/javascript" src="{% static 'js/apps/header/list/list_controller.js' %}"></script>
-		<script type="text/javascript" src="{% static 'js/apps/header/list/list_view.js' %}"></script>
-
-		<script type="text/javascript" src="{% static 'js/apps/eventos/list_MyEvent/list_controller.js' %}"></script>
-		<script type="text/javascript" src="{% static 'js/apps/eventos/list_MyEvent/list_view.js' %}"></script>
-
-
-		<script type="text/javascript" src="{% static 'js/apps/eventos/list_FavEvent/list_controller.js' %}"></script>
-		<script type="text/javascript" src="{% static 'js/apps/eventos/list_FavEvent/list_view.js' %}"></script>
-
-		<script type="text/javascript" src="{% static 'js/apps/eventos/list/list_controller.js' %}"></script>
-		<script type="text/javascript" src="{% static 'js/apps/eventos/list/list_view.js' %}"></script>
-
-		<script type="text/javascript" src="{% static 'js/apps/eventos/show/show_controller.js' %}"></script>
-		<script type="text/javascript" src="{% static 'js/apps/eventos/show/show_view.js' %}"></script>
-
-		<script type="text/javascript">
-			EventManager.start();
-		</script>
+		<script type="text/javascript" data-main="{% static 'js/require_main' %}"  src="{% static 'js/vendor/require.js' %}" ></script>
 	</body>
 </html>
