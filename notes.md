@@ -292,3 +292,8 @@ Modularización (RequireJs)
 ---
 
 AMD: Modulo de definición asincrónica
+
+
+Optimización con r.js
+---
+
