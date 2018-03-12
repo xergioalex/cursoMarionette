@@ -37,12 +37,22 @@ EventManager.module('entities', function (Entities, EventManager, Backbone, Mari
 		// }
 	});
 
+	EventManager.Favorito = Backbone.Model.extend({
+		urlRoot: 'api/favoritos/',
+	});
+
+	EventManager.FavoritosCollection = Backbone.Collection.extend({
+		model: EventManager.Favorito,
+		url: 'api/favoritos/'
+	});
+
 	EventManager.EventosCollection = Backbone.Collection.extend({
 		model: EventManager.Evento,
 		url: 'api/eventos/'
 	});
 
 	var eventosTodos = false;
+	var favoritosTodos = false;
 
 	var API = {
 		getEventosEntities: function () {
@@ -92,15 +102,38 @@ EventManager.module('entities', function (Entities, EventManager, Backbone, Mari
 			}
 
 			return defer.promise();
-		}
+		},
+
+
+		getFavoritosEntities: function () {
+			var favoritosColection = new EventManager.FavoritosCollection();
+			var defer = $.Deferred();
+
+			if (favoritosTodos.length) {
+				defer.resolve(favoritosTodos);
+			} else {
+				favoritosColection.fetch({
+					success: function (models) {
+						favoritosTodos = models;
+						defer.resolve(models);
+					}
+				})
+			}
+
+			return defer.promise();
+		},
+
 	};
 
 	EventManager.reqres.setHandler('eventos:entities', function () {
 		return API.getEventosEntities()
 	});
 
+	EventManager.reqres.setHandler('favoritos:entities', function () {
+		return API.getFavoritosEntities()
+	});
+
 	EventManager.reqres.setHandler('evento:entity', function (id) {
 		return API.getEventoEntity(id)
 	});
-
 });

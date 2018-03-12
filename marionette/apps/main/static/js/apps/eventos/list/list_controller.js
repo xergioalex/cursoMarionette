@@ -9,7 +9,7 @@ EventManager.module('EventosApp.List', function (List, EventManager, Backbone, M
 				});
 
 				eventosListView.on('childview:evento:show', function (childView, model) {
-					console.log('Registro evento Marionette');
+					// console.log('Registro evento Marionette');
 					EventManager.trigger('evento:show', model.get('id'));
 				});
 

@@ -2,7 +2,9 @@ EventManager.module('EventosApp', function (EventosApp, EventManager, Backbone, 
 	EventosApp.Router = Marionette.AppRouter.extend({
 		appRoutes: {
 			'eventos': 'listEventos',
-			'eventos/:id': 'showEvento'
+			'eventos/:id': 'showEvento',
+			'event-my': 'misEventos',
+			'event-fav': 'favEventos',
 		}
 	});
 
@@ -14,6 +16,12 @@ EventManager.module('EventosApp', function (EventosApp, EventManager, Backbone, 
 		showEvento: function (id) {
 			EventosApp.Show.Controller.showEvento(id);
 		},
+		misEventos: function () {
+			EventosApp.ListMy.Controller.listMyEventos();
+		},
+		favEventos: function () {
+			EventosApp.ListFav.Controller.listFavEventos();
+		}
 	}
 
 
@@ -25,6 +33,16 @@ EventManager.module('EventosApp', function (EventosApp, EventManager, Backbone, 
 	EventManager.on('evento:show', function (id) {
 		EventManager.navigate('eventos/' + id);
 		API.showEvento(id);
+	});
+
+	EventManager.on('evento:listMy', function () {
+		EventManager.navigate('event-my/');
+		API.misEventos();
+	});
+
+	EventManager.on('evento:listFav', function () {
+		EventManager.navigate('event-fav/');
+		API.favEventos();
 	});
 
 	EventManager.addInitializer(function () {

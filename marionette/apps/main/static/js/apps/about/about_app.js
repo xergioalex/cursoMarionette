@@ -1,5 +1,4 @@
 EventManager.module('AboutApp', function (AboutApp, EventManager, Backbone, Marionette, $, _) {
-	console.log('Entraaa');
 	AboutApp.Router = Marionette.AppRouter.extend({
 		appRoutes: {
 			'about': 'showAbout'

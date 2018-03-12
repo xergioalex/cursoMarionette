@@ -22,6 +22,8 @@ EventManager.module('Entities', function (Entities, EventManager, Backbone, Mari
 	var initializeHeader = function () {
 		Entities.headers = new Entities.HeaderCollection([
 			{ name: 'Eventos', url: 'eventos' },
+			{ name: 'MyEvents', url: 'event-my' },
+			{ name: 'Eventos Favoritos', url: 'event-fav' },
 			{ name: 'About', url: 'about' },
 		]);
 	}
