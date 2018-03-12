@@ -1,7 +1,33 @@
 EventManager.module('EventosApp.Show', function (Show, EventManager, Backbone, Marionette, $, _) {
 	Show.Controller = {
 		showEvento: function (id) {
+			$.ajaxSetup({
+			    beforeSend: function(xhr, settings) {
+			         function getCookie(name) {
+			             var cookieValue = null;
+			             if (document.cookie && document.cookie != '') {
+			                 var cookies = document.cookie.split(';');
+			                 for (var i = 0; i < cookies.length; i++) {
+			                     var cookie = jQuery.trim(cookies[i]);
+			                     // Does this cookie string begin with the name we want?
+			                 if (cookie.substring(0, name.length + 1) == (name + '=')) {
+			                     cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+			                     break;
+			                 }
+			             }
+			         }
+			         return cookieValue;
+			         }
+			         if (!(/^http:.*/.test(settings.url) || /^https:.*/.test(settings.url))) {
+			             // Only send the token to relative URLs i.e. locally.
+			             xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
+			         }
+			     }
+			});
+
 			var fetchEvento = EventManager.request('evento:entity', id);
+			var fetchFavoritos = EventManager.request("favoritos:entities");
+			var fetchRegistros = EventManager.request("registro:entity", id);
 
 			var eventsListLayout = new Show.Layout();
 			var registerPanel = new Show.Register();
@@ -25,6 +51,42 @@ EventManager.module('EventosApp.Show', function (Show, EventManager, Backbone, M
 					eventsListLayout.eventRegion.show(eventoView);
 					eventsListLayout.panelRegister.show(registerPanel);
 				});
+
+				eventoView.on('favorito:eventos', function (model) {
+					$.when(fetchFavoritos).done(function (favoritos) {
+						favoritos.create({
+							event: id,
+							user: 1
+						});
+					});
+				});
+
+				registerPanel.on('registrar:evento', function (nombre, apellido, dni, telefono) {
+
+					$.when(fetchRegistros).done(function (registros) {
+						var model = new EventManager.Inscrito({
+							firstname: nombre,
+							surname: apellido,
+							dni: parseInt(dni),
+							phone: telefono,
+							event: parseInt(id),
+							id: registros.length
+						});
+
+						// registros.add(model);
+						registros.create({
+							firstname: nombre,
+							surname: apellido,
+							dni: parseInt(dni),
+							phone: telefono,
+							event: parseInt(id),
+							id: registros.length
+						});
+						console.log(registros);
+					})
+
+				})
+
 
 				// eventoView.on('change:atributo', function (model) {
 				// 	eventoView.render()

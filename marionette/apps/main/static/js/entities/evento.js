@@ -123,6 +123,27 @@ EventManager.module('entities', function (Entities, EventManager, Backbone, Mari
 			return defer.promise();
 		},
 
+		getInscritosEntity: function (id) {
+			EventManager.Inscrito = Backbone.Model.extend({
+				urlRoot: '/api/eventos/' + id + '/inscritos/'
+			});
+
+			EventManager.InscritosCollection = Backbone.Collection.extend({
+				url: '/api/eventos/' + id + '/inscritos/',
+				model: EventManager.Inscrito
+			});
+
+			var inscritoColeccion = new EventManager.InscritosCollection();
+			var defer = $.Deferred();
+			inscritoColeccion.fetch({
+				success: function (models) {
+					defer.resolve(models);
+				}
+			});
+
+			return defer.promise();
+		}
+
 	};
 
 	EventManager.reqres.setHandler('eventos:entities', function () {
@@ -131,6 +152,11 @@ EventManager.module('entities', function (Entities, EventManager, Backbone, Mari
 
 	EventManager.reqres.setHandler('favoritos:entities', function () {
 		return API.getFavoritosEntities()
+	});
+
+
+	EventManager.reqres.setHandler("registro:entity", function (id){
+		return API.getInscritosEntity(id);
 	});
 
 	EventManager.reqres.setHandler('evento:entity', function (id) {
